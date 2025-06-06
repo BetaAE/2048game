@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/keyframes.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="shortcut icon" href="./favicon.ico">
+    
+</head>
+
+<body>
+    <audio id="bgm" loop>
+    <source src="music/bgm.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+
+<button id="toggleMusicBtn" disabled style="position:fixed;bottom:20px;right:20px;z-index:999;">
+    
+</button>
+    <div class="container">
+        <div class="heading">
+           <b> 
+            <h1 class="title">
+                2048
+            </h1>
+             </b>
+            <div class="scores-container">
+                <div class="score-container">
+                    <p class="title">SCORE</p>
+                    <p class="score">0</p>
+                    <div class="score-addition">
+                        +4
+                    </div>
+                </div>
+                <div class="best-container">
+                    <p class="title">BEST</p>
+                    <p class="score">66666</p>
+                </div>
+            </div>
+        </div>
+        <div class="game-intro">
+            <a href="" class="restart-btn">Restart</a>
+            <h2 class="subtitle">
+                
+            </h2>
+          
+        </div>
+        <div class="game-container">
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+            <div class="tile-container"></div>
+            <div class="failure-container pop-container">
+                <p>:(</p>
+                <p>FIALURE</p>
+            </div>
+            <div class="winning-container pop-container">
+                <p>:)</p>
+                <p>WINNING</p>
+            </div>
+        </div>
+        <div class="footer">
+            <span>
+                Crafted with ❤️ by BAE
+            </span>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/event.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- 🔁 Mute Toggle Script -->
+    <script>
+        const bgm = document.getElementById('bgm');
+        const toggleBtn = document.getElementById('toggleMusicBtn');
+
+        window.addEventListener('load', () => {
+            const playPromise = bgm.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    console.log("Autoplay blocked by browser. Music will play after user interacts.");
+                });
+            }
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            if (bgm.muted) {
+                bgm.muted = false;
+                toggleBtn.innerHTML = '🔊 Mute Music';
+            } else {
+                bgm.muted = true;
+                toggleBtn.innerHTML = '🔇 Unmute Music';
+            }
+        });
+    </script>
+</body>
+
+</html>
